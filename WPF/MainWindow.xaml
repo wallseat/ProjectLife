@@ -1,71 +1,154 @@
-﻿<Window x:Class="ProjectLife_v_0_3.WPF.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectLife_v_0_3"
-        mc:Ignorable="d"
-        Title="Project Life v0.3" Height="480" Width="854" >
+﻿<Window
+    x:Class="ProjectLife_v_0_3.WPF.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpf="clr-namespace:ProjectLife_v_0_3.WPF"
+    Title="Project Life v0.3"
+    Width="800"
+    Height="400"
+    d:DataContext="{d:DesignInstance Type=wpf:MainViewModel}"
+    mc:Ignorable="d">
+    <Window.InputBindings>
+        <KeyBinding
+            Key="P"
+            Command="{Binding TogglePauseCommand}" />
+        <KeyBinding
+            Key="M"
+            Command="{Binding SwitchDrawModeCommand}" />
+        <KeyBinding
+            Key="S"
+            Command="{Binding SaveCommand}"
+            Modifiers="Ctrl" />
+        <KeyBinding
+            Key="L"
+            Command="{Binding LoadCommand}"
+            Modifiers="Ctrl" />
+        <KeyBinding
+            Key="X"
+            Command="{Binding ClearCommand}"
+            Modifiers="Ctrl" />
+    </Window.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="0.24*" />
+            <ColumnDefinition Width="256" />
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="0" x:Name="img" Margin="0" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <DockPanel Grid.Column="1" Margin="0 0 15 0">
+        <Image
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Source="{Binding Bitmap}"
+            Stretch="Fill" />
 
-            <GroupBox DockPanel.Dock="Top" Header="Информация о симуляции">
-                <StackPanel>
-                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Left">
-                        <Run FontWeight="Bold">Состояние: </Run>
-                        <Run x:Name="State"></Run>
-                    </TextBlock>
-                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Left">
-                        <Run FontWeight="Bold">Режим отображения: </Run>
-                        <Run x:Name="DrawingMode"></Run>
-                    </TextBlock>
-                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Left">
-                        <Run FontWeight="Bold">Поколение: </Run>
-                        <Run x:Name="Generation"></Run>
-                    </TextBlock>
-                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Left">
-                        <Run FontWeight="Bold">Клеток: </Run>
-                        <Run x:Name="LifeCount"></Run>
-                    </TextBlock>
-                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Left">
-                        <Run FontWeight="Bold">Органики: </Run>
-                        <Run x:Name="OrganicCount"></Run>
-                    </TextBlock>
-                    <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Left">
-                        <Run FontWeight="Bold">Минералов: </Run>
-                        <Run x:Name="MineralsCount"></Run>
-                    </TextBlock>
-                    
-                    
-                    
-                    
+        <GroupBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="8"
+            Padding="4"
+            Header="Информация о симуляции">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,4,0"
+                        FontWeight="Bold"
+                        Text="Состояние:" />
+                    <TextBlock
+                        Foreground="{Binding Paused, Converter={StaticResource StateToBrushConverter}}"
+                        Text="{Binding Paused, Converter={StaticResource StateToStringConverter}}" />
                 </StackPanel>
-            </GroupBox>
 
-            <GroupBox Header="Настройки симуляции: " DockPanel.Dock="Top">
-                <StackPanel>
-                    <DockPanel DockPanel.Dock="Top" Margin="0 0 0 10">
-                        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0">
-                            <Run>Обновлений за такт: </Run>
-                            <Run
-                                Text="{Binding ElementName=UpdatesPerFrame, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
-                        </TextBlock>
-                        <Label DockPanel.Dock="Top" HorizontalAlignment="Center" />
-                        <Slider DockPanel.Dock="Top" Maximum="150" Minimum="1" Width="170"
-                                IsSnapToTickEnabled="True" Name="UpdatesPerFrame" />
-
-
-                    </DockPanel>
+                <StackPanel
+                    Margin="0,4,0,0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,4,0"
+                        FontWeight="Bold"
+                        Text="Режим отображения:" />
+                    <TextBlock
+                        MinWidth="64"
+                        Foreground="{Binding DrawMode, Converter={StaticResource DrawModeToBrushConverter}}"
+                        Text="{Binding DrawMode, Converter={StaticResource DrawModeToStringConverter}}" />
                 </StackPanel>
-            </GroupBox>
 
-        </DockPanel>
+                <StackPanel
+                    Margin="0,4,0,0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,4,0"
+                        FontWeight="Bold"
+                        Text="Поколение:" />
+                    <TextBlock Text="{Binding Generation}" />
+                </StackPanel>
+
+                <StackPanel
+                    Margin="0,4,0,0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,4,0"
+                        FontWeight="Bold"
+                        Text="Клеток:" />
+                    <TextBlock Text="{Binding LifeCount}" />
+                </StackPanel>
+
+                <StackPanel
+                    Margin="0,4,0,0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,4,0"
+                        FontWeight="Bold"
+                        Text="Органики:" />
+                    <TextBlock Text="{Binding OrganicCount}" />
+                </StackPanel>
+
+                <StackPanel
+                    Margin="0,4,0,0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,4,0"
+                        FontWeight="Bold"
+                        Text="Минералов:" />
+                    <TextBlock Text="{Binding MineralsCount}" />
+                </StackPanel>
+
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="8,0,8,8"
+            Padding="4"
+            VerticalAlignment="Top"
+            Header="Настройки симуляции: ">
+            <StackPanel>
+
+                <StackPanel
+                    Margin="0,4,0,0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,4,0"
+                        FontWeight="Bold"
+                        Text="Обновлений за такт:" />
+                    <TextBlock Text="{Binding UpdatesPerFrame}" />
+                </StackPanel>
+
+                <Slider
+                    Margin="4"
+                    IsSnapToTickEnabled="True"
+                    Maximum="150"
+                    Minimum="1"
+                    Value="{Binding UpdatesPerFrame}" />
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </Window>
