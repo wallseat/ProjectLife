@@ -4,7 +4,6 @@
     xmlns:wpf="clr-namespace:ProjectLife_v_0_3.WPF">
     <wpf:DrawModeToStringConverter x:Key="DrawModeToStringConverter" />
     <wpf:DrawModeToBrushConverter x:Key="DrawModeToBrushConverter" />
-
     <wpf:StateToStringConverter x:Key="StateToStringConverter" />
     <wpf:StateToBrushConverter x:Key="StateToBrushConverter" />
 </ResourceDictionary>

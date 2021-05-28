@@ -10,6 +10,7 @@ namespace ProjectLife_v_0_3.WPF
     public class MainViewModel : Notifier
     {
         private int updatesPerFrame = 1;
+
         public int UpdatesPerFrame
         {
             get { return updatesPerFrame; }
@@ -21,6 +22,7 @@ namespace ProjectLife_v_0_3.WPF
         }
 
         private bool paused = true;
+
         public bool Paused
         {
             get { return paused; }
@@ -32,6 +34,7 @@ namespace ProjectLife_v_0_3.WPF
         }
 
         private DrawMode drawMode = DrawMode.DEFAULT;
+
         public DrawMode DrawMode
         {
             get { return drawMode; }
@@ -42,9 +45,8 @@ namespace ProjectLife_v_0_3.WPF
             }
         }
 
-        public WriteableBitmap Bitmap { get; private set; }
-
         private int generation;
+
         public int Generation
         {
             get { return generation; }
@@ -56,6 +58,7 @@ namespace ProjectLife_v_0_3.WPF
         }
 
         private int mineralsCount;
+
         public int MineralsCount
         {
             get { return mineralsCount; }
@@ -67,6 +70,7 @@ namespace ProjectLife_v_0_3.WPF
         }
 
         private int organicCount;
+
         public int OrganicCount
         {
             get { return organicCount; }
@@ -78,6 +82,7 @@ namespace ProjectLife_v_0_3.WPF
         }
 
         private int lifeCount;
+
         public int LifeCount
         {
             get { return lifeCount; }
@@ -88,20 +93,22 @@ namespace ProjectLife_v_0_3.WPF
             }
         }
 
+        public WriteableBitmap Bitmap { get; private init; }
+
         private readonly World world;
         private readonly Drawer drawer;
-        private readonly DispatcherTimer timer;
 
         public MainViewModel()
         {
-            world = new World(120, 80); ;
+            world = new World(120, 80);
+            ;
             drawer = new Drawer(world, 6);
 
             DrawMode = drawer.Mode;
             Bitmap = drawer.Bitmap;
             NotifyPropertyChanged(nameof(Bitmap));
 
-            timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1) };
+            var timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(1)};
             timer.Tick += (o, args) =>
             {
                 if (!Paused)
@@ -121,33 +128,31 @@ namespace ProjectLife_v_0_3.WPF
         }
 
         private RelayCommand togglePauseCommand;
-        public RelayCommand TogglePauseCommand
-        {
-            get => togglePauseCommand ??= new RelayCommand
+
+        public RelayCommand TogglePauseCommand =>
+            togglePauseCommand ??= new RelayCommand
             (
-                obj => Paused = !Paused
+                _ => Paused = !Paused
             );
-        }
 
         private RelayCommand switchDrawModeCommand;
-        public RelayCommand SwitchDrawModeCommand
-        {
-            get => switchDrawModeCommand ??= new RelayCommand
+
+        public RelayCommand SwitchDrawModeCommand =>
+            switchDrawModeCommand ??= new RelayCommand
             (
-                obj =>
+                _ =>
                 {
                     drawer.ChangeDrawingMode();
                     DrawMode = drawer.Mode;
                 }
             );
-        }
 
         private RelayCommand saveCommand;
-        public RelayCommand SaveCommand
-        {
-            get => saveCommand ??= new RelayCommand
+
+        public RelayCommand SaveCommand =>
+            saveCommand ??= new RelayCommand
             (
-                obj =>
+                _ =>
                 {
                     bool needResume = !Paused;
                     Paused = true;
@@ -166,14 +171,13 @@ namespace ProjectLife_v_0_3.WPF
                     if (needResume) Paused = true;
                 }
             );
-        }
 
         private RelayCommand loadCommand;
-        public RelayCommand LoadCommand
-        {
-            get => loadCommand ??= new RelayCommand
+
+        public RelayCommand LoadCommand =>
+            loadCommand ??= new RelayCommand
             (
-                obj =>
+                _ =>
                 {
                     bool needResume = !Paused;
 
@@ -192,14 +196,13 @@ namespace ProjectLife_v_0_3.WPF
                     else if (needResume) Paused = false;
                 }
             );
-        }
 
         private RelayCommand clearCommand;
-        public RelayCommand ClearCommand
-        {
-            get => clearCommand ??= new RelayCommand
+
+        public RelayCommand ClearCommand =>
+            clearCommand ??= new RelayCommand
             (
-                obj =>
+                _ =>
                 {
                     bool needResume = !Paused;
                     Paused = true;
@@ -211,9 +214,8 @@ namespace ProjectLife_v_0_3.WPF
                         world.Renew();
                     }
 
-                    else if (needResume) Paused = true; ;
+                    else if (needResume) Paused = true;
                 }
             );
-        }
     }
 }

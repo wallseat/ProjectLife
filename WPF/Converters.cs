@@ -11,19 +11,20 @@ namespace ProjectLife_v_0_3.WPF
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch ((DrawMode)value)
-            {
-                case DrawMode.DEFAULT:
-                    return WindowLang.CellMode;
-                case DrawMode.ENERGY:
-                    return WindowLang.EnergyMode;
-                case DrawMode.MINERALS:
-                    return WindowLang.MineralMode;
-                default:
-                    // добавить строку в WindowLang?
-                    // другое значение этой строки?
-                    return "Не устаовлено";
-            }
+            if (value != null)
+                switch ((DrawMode) value)
+                {
+                    case DrawMode.DEFAULT:
+                        return WindowLang.CellMode;
+                    case DrawMode.ENERGY:
+                        return WindowLang.EnergyMode;
+                    case DrawMode.MINERALS:
+                        return WindowLang.MineralMode;
+                    default:
+                        throw new Exception($"undeclared draw mode! {value}");
+                }
+
+            throw new Exception("Value object cannot be null");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -37,18 +38,19 @@ namespace ProjectLife_v_0_3.WPF
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch ((DrawMode)value)
-            {
-                case DrawMode.DEFAULT:
-                    return new SolidColorBrush(Colors.Green);
-                case DrawMode.ENERGY:
-                    return new SolidColorBrush(Colors.Red);
-                case DrawMode.MINERALS:
-                    return new SolidColorBrush(Colors.Blue);
-                default:
-                    // другой цвет?
-                    return new SolidColorBrush(Colors.Gray);
-            }
+            if (value != null)
+                switch ((DrawMode) value)
+                {
+                    case DrawMode.DEFAULT:
+                        return new SolidColorBrush(Colors.Green);
+                    case DrawMode.ENERGY:
+                        return new SolidColorBrush(Colors.Red);
+                    case DrawMode.MINERALS:
+                        return new SolidColorBrush(Colors.Blue);
+                    default:
+                        return new SolidColorBrush(Colors.Gray);
+                }
+            throw new Exception("Value object cannot be null");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -62,10 +64,10 @@ namespace ProjectLife_v_0_3.WPF
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((bool)value)
+            if (value != null && (bool) value)
                 return WindowLang.PauseState;
-            else
-                return WindowLang.SimulatingState;
+            
+            return WindowLang.SimulatingState;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -79,10 +81,10 @@ namespace ProjectLife_v_0_3.WPF
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((bool)value)
+            if (value != null && (bool) value)
                 return new SolidColorBrush(Colors.Red);
-            else
-                return new SolidColorBrush(Colors.Green);
+            
+            return new SolidColorBrush(Colors.Green);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
