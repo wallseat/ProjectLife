@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace ProjectLife_v_0_3.ProjectLife
+namespace ProjectLife.Core
 {
     public enum Direction
     {

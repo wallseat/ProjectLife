@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectLife_v_0_3", "ProjectLife_v_0_3.csproj", "{09038467-8D6C-42D5-9DAE-7F9BB3DA353E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectLife", "ProjectLife.csproj", "{09038467-8D6C-42D5-9DAE-7F9BB3DA353E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

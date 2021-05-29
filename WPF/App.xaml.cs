@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ProjectLife_v_0_3.WPF
+namespace ProjectLife.WPF
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -1,13 +1,13 @@
-﻿using Microsoft.Win32;
-using ProjectLife_v_0_3.ProjectLife;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using Microsoft.Win32;
+using ProjectLife.Core;
 
-namespace ProjectLife_v_0_3.WPF
+namespace ProjectLife.WPF
 {
     public class MainViewModel : Notifier
     {

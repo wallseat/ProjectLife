@@ -1,10 +1,10 @@
-﻿using ProjectLife_v_0_3.ProjectLife;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
+using ProjectLife.Core;
 
-namespace ProjectLife_v_0_3.WPF
+namespace ProjectLife.WPF
 {
     [ValueConversion(typeof(DrawMode), typeof(string))]
     public class DrawModeToStringConverter : IValueConverter

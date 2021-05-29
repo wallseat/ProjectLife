@@ -1,10 +1,10 @@
 ﻿<Window
-    x:Class="ProjectLife_v_0_3.WPF.MainWindow"
+    x:Class="ProjectLife.WPF.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:wpf="clr-namespace:ProjectLife_v_0_3.WPF"
+    xmlns:wpf="clr-namespace:ProjectLife.WPF"
     Title="Project Life v0.3"
     Width="800"
     Height="400"

@@ -4,7 +4,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Color = System.Drawing.Color;
 
-namespace ProjectLife_v_0_3.ProjectLife
+namespace ProjectLife.Core
 {
     public enum DrawMode
     {

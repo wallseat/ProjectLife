@@ -1,7 +1,6 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 
-namespace ProjectLife_v_0_3.WPF
+namespace ProjectLife.WPF
 {
     public static class WindowLang
     {

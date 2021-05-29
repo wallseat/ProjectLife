@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text.Json.Serialization;
-using System.Windows.Media;
-using Color = System.Drawing.Color;
 
-namespace ProjectLife_v_0_3.ProjectLife
+namespace ProjectLife.Core
 {
     public enum CellType
     {
