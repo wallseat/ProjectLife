@@ -539,8 +539,8 @@ namespace ProjectLife_v_0_3.ProjectLife
 
             for (int i = 0; i < MutationsCount; i++)
             {
-                int mutatedGenomeNum = Settings.Random.Next(0, GenomeLen - 1);
-                int mutatedChromosomeNum = Settings.Random.Next(0, ChromosomeLen - 1);
+                int mutatedGenomeNum = Settings.Random.Next(0, GenomeLen);
+                int mutatedChromosomeNum = Settings.Random.Next(0, ChromosomeLen);
 
                 genome[mutatedGenomeNum, mutatedChromosomeNum] = Settings.Random.Next(0, 64);
             }

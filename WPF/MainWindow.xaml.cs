@@ -1,4 +1,7 @@
-﻿namespace ProjectLife_v_0_3.WPF
+﻿using System.Windows;
+using System.Windows.Controls;
+
+namespace ProjectLife_v_0_3.WPF
 {
     public static class WindowLang
     {
@@ -10,7 +13,7 @@
         public const string ClearConfirmationInfo = "Вы уверены что хотите начать с начала?";
     }
 
-    public partial class MainWindow
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {

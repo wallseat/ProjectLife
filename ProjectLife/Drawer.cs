@@ -16,10 +16,10 @@ namespace ProjectLife_v_0_3.ProjectLife
     public class Drawer
     {
         // Params
-        private byte maxEnergyGreen = 180;
+        private const byte maxEnergyGreen = 180;
 
-        private World World;
-        private int CellSize;
+        private readonly World World;
+        private readonly int CellSize;
         private byte[] WorldBackground;
         public DrawMode Mode { get; private set; }
 
@@ -171,7 +171,6 @@ namespace ProjectLife_v_0_3.ProjectLife
             Bitmap.WritePixels(new Int32Rect(0, 0, pixelsInWidth, pixelsInHeight), WorldBackground,
                 3 * World.Width * CellSize, 0);
         }
-
 
         public void DrawWorld()
         {

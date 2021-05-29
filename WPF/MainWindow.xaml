@@ -29,6 +29,9 @@
             Key="X"
             Command="{Binding ClearCommand}"
             Modifiers="Ctrl" />
+        <MouseBinding
+            MouseAction="LeftClick"
+            Command="{Binding RevisionCellCommand}"></MouseBinding>
     </Window.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -42,13 +45,22 @@
         </Grid.RowDefinitions>
 
         <Image
+            x:Name="Canvas"
             Grid.Row="0"
             Grid.RowSpan="2"
             Grid.Column="0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Source="{Binding Bitmap}"
-            Stretch="Fill" />
+            Stretch="Fill" >
+            <Image.InputBindings>
+                <MouseBinding
+                    Command="{Binding RevisionCellCommand}"
+                    CommandParameter="{Binding ElementName=Canvas}"
+                    Gesture="LeftClick">
+                </MouseBinding>
+            </Image.InputBindings>
+        </Image>
 
         <GroupBox
             Grid.Row="0"

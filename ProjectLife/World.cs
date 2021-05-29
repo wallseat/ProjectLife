@@ -59,9 +59,9 @@ namespace ProjectLife_v_0_3.ProjectLife
         {
             public const int UpdatesPerGeneration = 20;
             public const int WorldLevelsCount = 20;
-            public const float EnergyReducePerLevel = 0.04f;
-            public const float MaxEnergyLevel = 6f;
-            public const int MaxMineralLevel = 6;
+            public const float EnergyReducePerLevel = 0.08f;
+            public const float MaxEnergyLevel = 7f;
+            public const int MaxMineralLevel = 7;
             public const int MineralsReducePerLevel = 1;
         }
     }
